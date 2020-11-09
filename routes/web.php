@@ -19,11 +19,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {
+
+// rotte ADMIN
+Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('posts', 'PostController');
     // Route::get('/posts', 'PostController@index')->name('index');
 });
 
-Route::get('/posts', 'PostController@index')->name('index');
-Route::get('/posts/show', 'PostController@index')->name('index');
+// rotte GUEST
+Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');

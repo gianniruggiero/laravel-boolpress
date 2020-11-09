@@ -19,7 +19,7 @@
                 <td>{{$post->title}}</td>
                 <td>{{$post->slug}}</td>
                 <td>{{$post->abstract}}</td>
-                <td><a href="{{Route('posts.show', $post->slug)}}">Show</a><br><span>Edit</span><br><span>Delete</span></td>
+                <td><a href="{{Route('admin.posts.show', $post->slug)}}">Show</a><br><span>Edit</span><br><span>Delete</span></td>
             </tr>
         @endforeach    
         </tbody>

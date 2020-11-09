@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts.index', compact('posts'));
+        return view('guest.posts.index', compact('posts'));
     }
 
     /**
@@ -48,9 +48,7 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        dd($post);
-
-
+        return view('guest.posts.show', compact('post'));
     }
 
     /**
