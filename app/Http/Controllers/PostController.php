@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -16,9 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-       $user_id = Auth::id();
-       $posts = Post::where('user_id', $user_id)->get();
-       return view('admin.posts.index', compact('posts'));
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -51,7 +48,9 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        return view('admin.posts.show', compact('post'));
+        dd($post);
+
+
     }
 
     /**
