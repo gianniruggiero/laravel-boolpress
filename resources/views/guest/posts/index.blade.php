@@ -33,17 +33,19 @@
   </nav>
 
   <!-- Jumbotron -->
-  {{-- <div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid">
     <div class="container">
+      <h1 class="display-4 text-center">BOOLPRESS</h1>
+      <p class="lead text-center"><em> A new way of Blogging...</em></p>
     </div>
   </div>
-  <!-- /Jumbotron --> --}}
+  <!-- /Jumbotron -->
 
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="display-4">BOOLPRESS</h1>
-    <span class="lead">A new way of Blogging...</span>
+    {{-- <h1 class="display-4 text-center">BOOLPRESS</h1>
+    <p class="lead text-center"><em> A new way of Blogging...</em></p> --}}
 
     <div class="row">
       <!-- Blog Entries Column -->

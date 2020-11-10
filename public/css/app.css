@@ -10903,3 +10903,11 @@ a.text-dark:focus {
   }
 }
 
+.main {
+  padding-top: 0px;
+}
+
+.jumbotron {
+  background-color: #f0eeee;
+}
+

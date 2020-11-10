@@ -7,11 +7,15 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// .jumbotron {
-//       background-image: url("/storage/images/jumbo_bg.jpg");
-// //    background-image: url('/images/footer-bg.jpg');
-//         h1, span {
-//             background-color: black;
-//             color: white;
-//         }
-// }
+.main {
+    padding-top: 0px;
+}
+
+.jumbotron {
+    //   background-image: url("/storage/images/jumbo_bg.jpg");
+    background-color: #f0eeee;
+        // h1, span {
+        //     background-color: black;
+        //     color: white;
+        // }
+}
