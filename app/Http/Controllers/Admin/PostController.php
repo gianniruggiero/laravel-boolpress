@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -39,7 +40,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $request->validate ([
+            'title'=>'required',
+            'post_text'=>'required',
+            'abstract'=>'required',
+            'slug'=>'required|unique:posts',
+            'image'=>'image'
+        ]);
+
+        $newPost = new Post;
+        $newPost->title = $request->title;
+        $newPost->post_text = $request->post_text;
+        $newPost->abstract = $request->abstract;
+        $newPost->slug = $request->slug;
+
+        $logged_user_id = Auth::id();
+        $newPost->user_id = $logged_user_id;
+        
+        if ($request->image) {
+            $imageUri = Storage::disk('public')->put('images/'.$logged_user_id, $data['image']);
+            $newPost->image = $imageUri;
+        }
+
+        $newPost->save();
+        return redirect()->route('admin.posts.show', $newPost->slug);
+
     }
 
     /**

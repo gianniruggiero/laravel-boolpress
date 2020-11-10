@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="image">Immagine</label>
-                <input type="file" class="form-control" id="image" name="image" placeholder="Scegli l'immagine per il tuo post">
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" placeholder="Scegli l'immagine per il tuo post">
             </div>
 
 
