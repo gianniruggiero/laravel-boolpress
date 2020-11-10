@@ -3,8 +3,26 @@
 @section('content')
 
     <div class="container">
-        <h1>Crea un nuovo post</h1>
+
+        <div class="row">
+            <div class="col-10">
+              <h1>Crea un nuovo post</h1>
+            </div>
+            <div class="col-2 text-right">
+              <a href="{{Route('admin.posts.index')}}" class="btn btn-primary">Annulla</a>
+            </div>
+          </div>
+       
         <br>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <form action="{{Route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -36,11 +54,9 @@
               <textarea class="form-control" name="post_text" id="post_text" rows="5"></textarea>
             </div>
 
-           
-            <button type="submit" class="btn btn-primary">SALVA IL POST</button>
-
+            <button type="submit" class="btn btn-primary">PUBBLICA IL POST</button>
+   
         </form>
-
 
 {{-- 
         <p><strong>Abstract: </strong> {{$post->abstract}}</p>

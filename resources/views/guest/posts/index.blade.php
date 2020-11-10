@@ -32,20 +32,21 @@
     </div>
   </nav>
 
+  <!-- Jumbotron -->
+  {{-- <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    </div>
+  </div>
+  <!-- /Jumbotron --> --}}
+
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="my-4">Boolpress / 
-        <small>a new way of blogging</small>
-    </h1>
+    <h1 class="display-4">BOOLPRESS</h1>
+    <span class="lead">A new way of Blogging...</span>
 
     <div class="row">
-
-
-
       <!-- Blog Entries Column -->
-
-
         @foreach ($posts as $post)
         <div class="col-md-6">
 
