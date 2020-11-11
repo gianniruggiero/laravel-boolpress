@@ -89,7 +89,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -101,7 +102,37 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $request->validate ([
+            'title'=>'required',
+            'post_text'=>'required',
+            'abstract'=>'required',
+            'slug'=>[
+                'required',
+                'unique:posts,slug,'.$id
+            ],
+            'image'=>'image'
+        ]);
+
+        $editPost = Post::find($id);
+
+        $editPost->title = $request->title;
+        $editPost->post_text = $request->post_text;
+        $editPost->abstract = $request->abstract;
+        $editPost->slug = $request->slug;
+
+        $logged_user_id = Auth::id();
+        $editPost->user_id = $logged_user_id;
+        
+        if ($request->image) {
+            $imageUri = Storage::disk('public')->put('images/'.$editPost->user_id, $data['image']);
+            $editPost->image = $imageUri;
+        }
+
+        $editPost->update();
+        return redirect()->route('admin.posts.show', $editPost->slug);
+
     }
 
     /**
