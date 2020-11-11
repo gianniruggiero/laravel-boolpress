@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\NewPost2;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class PostController extends Controller
 {
@@ -65,7 +69,17 @@ class PostController extends Controller
         }
 
         $newPost->save();
+
+        $user_email = $newPost->user->email;
+
+        ($user_email);
+
+        //invia all'utente email di creazione di un nuovo post
+        // Mail::to($user_email)->send(new NewPostMail($newPost));
+        Mail::to($user_email)->send(new NewPost2($newPost));
+
         return redirect()->route('admin.posts.show', $newPost->slug);
+        
 
     }
 
