@@ -161,4 +161,19 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('admin.posts.index');
     }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyModal(Request $request)
+    {
+        $id = request()->input_id;
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('admin.posts.index');
+    }
+
 }

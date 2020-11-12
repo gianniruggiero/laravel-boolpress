@@ -17,4 +17,3 @@ Guarda il post
 Stay tuned,<br>
 {{ config('app.name') }} / BOOLPRESS Team
 @endcomponent
-

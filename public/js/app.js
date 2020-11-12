@@ -37265,6 +37265,24 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/admin_posts_index.js":
+/*!*******************************************!*\
+  !*** ./resources/js/admin_posts_index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).on('click', '.delete', function () {
+  var postid = $(this).attr('data-id');
+  $('#input_id').val(postid);
+  console.log(document.getElementById(input_id).value); // document.getElementsById('#modal_btn_delete')[0].getAttribute('data-id');
+}); // $(document).on('click','.delete',function(){
+//     let id = $(this).attr('data-id');
+//     $('#id').val(id);
+// });
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -37273,6 +37291,8 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./admin_posts_index */ "./resources/js/admin_posts_index.js");
 
 /***/ }),
 

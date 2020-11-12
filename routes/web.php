@@ -27,6 +27,8 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware('auth')->
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('posts', 'PostController');
     // Route::get('/posts', 'PostController@index')->name('index');
+    Route::delete('posts', 'PostController@destroyModal')->name('posts.destroyModal');
+
 });
 
 // rotte GUEST
