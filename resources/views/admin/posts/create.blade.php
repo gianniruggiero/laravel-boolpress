@@ -34,6 +34,50 @@
             </div>
 
             <div class="form-group">
+
+              <label for="title"><strong>Tags:</strong></label><br>
+
+              @foreach ($tags as $tag)
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input type="checkbox" name="tags[]" id="tag-{{$tag->id}}" value="{{$tag->id}}" class="custom-control-input">
+                  <label for="tag-{{$tag->id}}" class="custom-control-label"> {{$tag->name}}</label>
+                </div>                  
+              @endforeach
+
+{{--               
+              <!-- Default inline 1-->
+              <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="tag1">
+                <label class="custom-control-label" for="tag1">mare</label>
+              </div>
+
+              <!-- Default inline 2-->
+              <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="tag2">
+                <label class="custom-control-label" for="tag2">città</label>
+              </div>
+
+              <!-- Default inline 3-->
+              <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="tag3">
+                <label class="custom-control-label" for="tag3">montagna</label>
+              </div>
+
+              <!-- Default inline 4-->
+              <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="tag4">
+                <label class="custom-control-label" for="tag4">sole</label>
+              </div>
+
+              <!-- Default inline 5-->
+              <div class="custom-control custom-checkbox custom-control-inline">
+                <input type="checkbox" class="custom-control-input" id="tag5">
+                <label class="custom-control-label" for="tag5">madre</label>
+              </div> --}}
+              
+            </div>
+
+            <div class="form-group">
                 <label for="abstract">Abstract</label>
                 <input type="text" class="form-control" id="abstract" name="abstract" placeholder="Inserisci abstract del post">
             </div>
@@ -53,6 +97,7 @@
               <label for="post_text">Post</label>
               <textarea class="form-control" name="post_text" id="post_text" rows="5"></textarea>
             </div>
+
 
             <button type="submit" class="btn btn-primary">PUBBLICA IL POST</button>
    

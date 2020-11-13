@@ -20,6 +20,16 @@
         <p><strong>Autore: </strong>{{$post->user->name}}</p>
         <p><strong>Logged as: </strong> {{$post->user->email}}</p>
         <p><strong>Slug: </strong>{{$post->slug}}</p>
+        <p><strong>Tags: </strong>
+            @foreach ($tags as $tag)
+              @if ($loop->last)
+                  <span>{{$tag->name}}</span>
+              @else
+                  <span>{{$tag->name}} - </span>
+              @endif
+            @endforeach
+        </p>
+
         <br>
         <hr>
         <a href="{{Route('admin.posts.index')}}"><strong>&larr; BACK TO THE LIST</strong> </a>
