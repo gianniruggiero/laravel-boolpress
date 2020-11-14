@@ -29,22 +29,44 @@
             @method('PUT')
 
             <div class="form-group">
-              <label for="title">Titolo</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{$post->title}}">
+              <label for="title"><strong>Titolo</strong></label>
+              <input type="text" class="form-control" id="title" name="title" value="{{$post->title}}">
+            </div>
+  
+            <div class="form-group">
+                <label for="title"><strong>Tags:</strong></label><br>
+                {{-- ciclo per creare tutte le check-box --}}
+                @foreach ($tags as $tag)
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                        @php
+                            // controlla se il tag è da rendere checked
+                            foreach ($tag->posts as $postTagged) {
+                              if ($postTagged->id==$post->id) {
+                                $tagChecked = 'checked';
+                                break;
+                              } else {
+                                $tagChecked = '';
+                              }
+                            }
+                        @endphp
+                        <input type="checkbox" {{$tagChecked}} name="tags[]" id="tag-{{$tag->id}}" value="{{$tag->id}}" class="custom-control-input">
+                        <label for="tag-{{$tag->id}}" class="custom-control-label"> {{$tag->name}}</label>
+                    </div>
+                @endforeach
             </div>
 
             <div class="form-group">
-                <label for="abstract">Abstract</label>
+                <label for="abstract"><strong>Abstract</strong></label>
                 <input type="text" class="form-control" id="abstract" name="abstract" value="{{$post->abstract}}" placeholder="Inserisci abstract del post">
             </div>
 
             <div class="form-group">
-                <label for="slug">Slug</label>
+                <label for="slug"><strong>Slug</strong></label>
                 <input type="text" class="form-control" id="slug" name="slug" value="{{$post->slug}}" placeholder="Crea slug del post">
             </div>
  
             <div class="form-group">
-                <label for="image">Immagine</label><br>
+                <label for="image"><strong>Immagine</strong></label><br>
                 <img id="img_preview" src="{{asset("/storage/".$post->image)}}" width=300 alt="{{$post->title}}">
                 <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="loadFile(event)" placeholder="Scegli l'immagine per il tuo post">
             </div>
@@ -58,24 +80,14 @@
             </script>
 
             <div class="form-group">
-              <label for="post_text">Post</label>
+              <label for="post_text"><strong>Post</strong></label>
               <textarea class="form-control" name="post_text" id="post_text" rows="5">{{$post->post_text}}"</textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">MODIFICA IL POST</button>
+            <button type="submit" class="btn btn-danger">MODIFICA IL POST</button>
    
         </form>
 
-{{-- 
-        <p><strong>Abstract: </strong> {{$post->abstract}}</p>
-        <p><strong>Testo del Post: </strong> {{$post->post_text}}</p>
-        <p><strong>Postato il:</strong> {{$post->created_at}}</p>
-        <p><strong>Autore: </strong>{{$post->user->name}}</p>
-        <p><strong>Logged as: </strong> {{$post->user->email}}</p>
-        <br><hr>
-        <a href="{{Route('admin.posts.index')}}"><strong>&larr; BACK TO THE LIST</strong> </a>
-         --}}
- 
     </div>    
 
 @endsection

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\NewPost2;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\DB;
 
 
 class PostController extends Controller
@@ -34,7 +34,7 @@ class PostController extends Controller
      */
     public function create()
     {   
-        $tags = Tag::all();
+        $tags = DB::table('tags')->orderBy('name','asc')->get();
         return view('admin.posts.create', compact('tags'));
     }
 
@@ -114,7 +114,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('admin.posts.edit', compact('post'));
+        $tags = Tag::all();
+        // $tagsPost = $post->tags;
+        return view('admin.posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -136,7 +138,8 @@ class PostController extends Controller
                 'required',
                 'unique:posts,slug,'.$id
             ],
-            'image'=>'image'
+            'image'=>'image',
+            'tags'=>'required'
         ]);
 
         $editPost = Post::find($id);
@@ -149,9 +152,18 @@ class PostController extends Controller
         $logged_user_id = Auth::id();
         $editPost->user_id = $logged_user_id;
         
+        // salva l'immagine nel DB
         if ($request->image) {
             $imageUri = Storage::disk('public')->put('images/'.$editPost->user_id, $data['image']);
             $editPost->image = $imageUri;
+        }
+
+        $editPost->tags()->detach();
+        // salva i tags nel DB
+        if ($request->tags) {
+            foreach ($request->tags as $tag) {
+                $editPost->tags()->attach($tag);
+            }
         }
 
         $editPost->update();

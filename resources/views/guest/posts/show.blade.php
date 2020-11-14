@@ -46,6 +46,16 @@
                 <div class="card-body">
                 <h2 class="card-title">{{$post->title}}</h2>
                 <p class="card-text">{{$post->post_text}}</p>
+                <p><strong>Tags: </strong>
+                  @foreach ($tags as $tag)
+                    @if ($loop->last)
+                        <span>{{$tag->name}}</span>
+                    @else
+                        <span>{{$tag->name}} - </span>
+                    @endif
+                  @endforeach
+              </p>
+      
                 <a href="{{Route('posts.index')}}" class="btn btn-primary">&larr; Back Home</a>
                 </div>
                 <div class="card-footer text-muted">
